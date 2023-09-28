@@ -30,15 +30,17 @@ def handle_events():
             running = False
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             click_x, click_y = event.x, TUK_HEIGHT - 1 - event.y
+            click.append((click_x,click_y))
         elif event.type == SDL_MOUSEMOTION:
             mouse_x, mouse_y = event.x, TUK_HEIGHT - 1 - event.y
 
 def mouse_draw():
     global mouse_x, mouse_y
-    global click_x, click_y
 
     hand.draw(mouse_x,mouse_y)
-    hand.draw(click_x,click_y)
+
+    for n in range (len(click)):
+        hand.draw(click[n][0],click[n][1])
 
 # === main ===
 while running:
